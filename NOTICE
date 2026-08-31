@@ -1,0 +1,9 @@
+Third-party content
+===================
+
+The dataset in src/awesome-privacy.yml is from Awesome Privacy by Alicia Sykes
+(https://github.com/Lissy93/awesome-privacy), licensed CC0-1.0. It is included
+here unmodified, and can be refreshed with `python build.py --refresh`.
+
+Everything else in this repository - the generator, templates and interface
+code - is licensed under the MIT Licence, see LICENSE.
