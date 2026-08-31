@@ -1,0 +1,187 @@
+<title>Private Alternatives</title>
+<style>
+:root{
+  --bg:#ffffff; --bg-2:#f6f7f9; --line:#e3e6ea; --ink:#1a1d21; --ink-2:#565d66; --ink-3:#868e99;
+  --link:#1a56c4; --ok:#0b6b57; --flag-bg:#f0f2f5;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181c; --bg-2:#1b1f24; --line:#2a2f36; --ink:#e8eaed; --ink-2:#adb4bd; --ink-3:#7d858f;
+    --link:#7fb0ff; --ok:#5fc9ae; --flag-bg:#22272e;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181c; --bg-2:#1b1f24; --line:#2a2f36; --ink:#e8eaed; --ink-2:#adb4bd; --ink-3:#7d858f;
+  --link:#7fb0ff; --ok:#5fc9ae; --flag-bg:#22272e;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--link);}
+:focus-visible{outline:2px solid var(--link); outline-offset:2px;}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px;}
+
+header{border-bottom:1px solid var(--line); background:var(--bg); position:sticky; top:0; z-index:5;}
+.bar{display:flex; align-items:center; gap:12px; padding:12px 0;}
+.bar strong{font-size:16px; font-weight:600; white-space:nowrap;}
+#q{
+  flex:1; min-width:120px; padding:8px 11px; font:15px/1.4 inherit;
+  border:1px solid var(--line); border-radius:6px; background:var(--bg-2); color:var(--ink);
+}
+#q::placeholder{color:var(--ink-3);}
+label.opt{display:flex; align-items:center; gap:6px; font-size:14px; color:var(--ink-2); white-space:nowrap; cursor:pointer;}
+label.opt input{accent-color:var(--link);}
+button.theme{border:1px solid var(--line); background:var(--bg-2); color:var(--ink-2); border-radius:6px; padding:7px 10px; font:14px inherit; cursor:pointer;}
+button.theme:hover{color:var(--ink);}
+
+.intro{padding:36px 0 24px; border-bottom:1px solid var(--line);}
+.intro h1{margin:0 0 10px; font-size:26px; font-weight:600; letter-spacing:-.01em;}
+.intro p{margin:0; color:var(--ink-2); font-size:15.5px;}
+.intro p + p{margin-top:8px;}
+
+.count{padding:14px 0 0; font-size:14px; color:var(--ink-3);}
+
+h2.cat{font-size:20px; font-weight:600; margin:34px 0 0; padding-top:22px; border-top:1px solid var(--line);}
+.sec{margin:22px 0 0;}
+.sec h3{font-size:15px; font-weight:600; margin:0;}
+.sec .alt{font-size:14px; color:var(--ink-3); margin:2px 0 0;}
+.sec .warn{font-size:14px; color:var(--ink-2); margin:8px 0 0; padding:8px 11px; background:var(--bg-2); border-left:2px solid var(--ink-3); border-radius:0 4px 4px 0;}
+
+ul{list-style:none; margin:10px 0 0; padding:0;}
+li{padding:11px 0; border-top:1px solid var(--line);}
+li .name{font-weight:600; font-size:15.5px; text-decoration:none; color:var(--ink);}
+li .name:hover{color:var(--link); text-decoration:underline;}
+li .desc{margin:3px 0 0; font-size:14.5px; color:var(--ink-2);}
+li .meta{margin:5px 0 0; font-size:13px; color:var(--ink-3); display:flex; gap:12px; flex-wrap:wrap;}
+li .meta a{color:var(--ink-3);}
+li .meta a:hover{color:var(--link);}
+.tag{font-size:12px; padding:1px 7px; border-radius:4px; background:var(--flag-bg); color:var(--ink-2);}
+.tag.os{color:var(--ok);}
+
+.none{padding:50px 0; text-align:center; color:var(--ink-3);}
+footer{margin-top:44px; padding:20px 0 48px; border-top:1px solid var(--line); font-size:13.5px; color:var(--ink-3);}
+@media (max-width:560px){
+  .bar{flex-wrap:wrap;}
+  .bar strong{width:100%;}
+}
+</style>
+
+<header>
+  <div class="wrap bar">
+    <strong>Private Alternatives</strong>
+    <input id="q" type="search" placeholder="Search 389 tools" autocomplete="off" aria-label="Search tools">
+    <label class="opt"><input type="checkbox" id="osOnly"> Open source only</label>
+    <button class="theme" id="theme" aria-label="Switch theme">Theme</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>Privacy-respecting software, by what it replaces</h1>
+    <p>389 tools in 13 categories, each listed under the mainstream product it stands in for. Search by name, or by the thing you want to get away from.</p>
+    <p>Listings come from <a href="https://github.com/Lissy93/awesome-privacy" target="_blank" rel="noopener noreferrer">Awesome Privacy</a> by Alicia Sykes (CC0-1.0).</p>
+  </div>
+  <p class="count" id="count"></p>
+  <div id="out"></div>
+  <footer>Being listed is not an endorsement. Check each project's own documentation before you switch.<br>Data snapshot __BUILT__ &middot; other views: <a href="index.html">Index</a> &middot; <a href="atlas.html">Atlas</a></footer>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+"use strict";
+var DATA = JSON.parse(document.getElementById("data").textContent);
+var out = document.getElementById("out"), countEl = document.getElementById("count");
+var qEl = document.getElementById("q"), osEl = document.getElementById("osOnly");
+
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function strip(s){ return String(s).replace(/<[^>]*>/g, ""); }
+
+var BRANDS = {"whatsapp":"WhatsApp","wechat":"WeChat","icloud":"iCloud","icloud mail":"iCloud Mail","youtube":"YouTube",
+  "paypal":"PayPal","linkedin":"LinkedIn","github":"GitHub","gitlab":"GitLab","tiktok":"TikTok","imessage":"iMessage",
+  "ios":"iOS","macos":"macOS","ebay":"eBay","em client":"eM Client","soundcloud":"SoundCloud","onedrive":"OneDrive",
+  "teamviewer":"TeamViewer","anydesk":"AnyDesk","openvpn":"OpenVPN","nordvpn":"NordVPN","expressvpn":"ExpressVPN",
+  "protonmail":"ProtonMail","lastpass":"LastPass","1password":"1Password","roboform":"RoboForm","nordpass":"NordPass",
+  "cyberghost":"CyberGhost","davinci resolve":"DaVinci Resolve","adblock":"AdBlock","adblock plus":"AdBlock Plus",
+  "centos":"CentOS","freebsd":"FreeBSD","openwrt":"OpenWrt","pfsense":"pfSense","dd-wrt":"DD-WRT","3ds max":"3ds Max",
+  "cal.com":"Cal.com","any.do":"Any.do","battle.net":"Battle.net","aws codecommit":"AWS CodeCommit","gmail":"Gmail",
+  "bittorrent":"BitTorrent","utorrent":"uTorrent","libreoffice":"LibreOffice","openoffice":"OpenOffice"};
+var CAPS = {aol:1,aws:1,hbo:1,bbc:1,cnn:1,espn:1,vlc:1,vpn:1,dns:1,sms:1,ftp:1,pdf:1,otp:1,tv:1,us:1,uk:1,ai:1,ip:1,cc:1,id:1};
+function pretty(s){
+  if(/[A-Z]/.test(s)) return s;
+  var low = s.toLowerCase();
+  if(BRANDS[low]) return BRANDS[low];
+  return low.split(" ").map(function(w){
+    if(CAPS[w]) return w.toUpperCase();
+    if(BRANDS[w]) return BRANDS[w];
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }).join(" ");
+}
+
+/* one-time index: sort A-Z, build search text */
+var TOTAL = 0;
+DATA.forEach(function(c){
+  c.sections.forEach(function(s){
+    s.altText = s.alt.map(pretty).join(", ");
+    s.services.sort(function(a, b){ return a.n.localeCompare(b.n); });
+    s.services.forEach(function(x){
+      x.text = strip(x.d);
+      x.hay = (x.n + " " + x.f + " " + x.text + " " + s.name + " " + s.altText + " " + c.name).toLowerCase();
+      TOTAL++;
+    });
+  });
+});
+
+function toolHTML(x){
+  var links = ['<a href="' + esc(x.u) + '" target="_blank" rel="noopener noreferrer">Website</a>'];
+  if(x.repo) links.push('<a href="' + esc(x.repo[1]) + '" target="_blank" rel="noopener noreferrer">' + x.repo[0] + "</a>");
+  if(x.tos) links.push('<a href="https://tosdr.org/en/service/' + x.tos + '" target="_blank" rel="noopener noreferrer">Terms rating</a>');
+  var tags = "";
+  if(x.f) tags += '<span class="tag">' + esc(x.f) + "</span>";
+  if(x.os) tags += '<span class="tag os">Open source</span>';
+  if(x.au) tags += '<span class="tag">Audited</span>';
+  if(x.cr) tags += '<span class="tag">Takes crypto</span>';
+  return "<li><a class=\"name\" href=\"" + esc(x.u) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + esc(x.n) + "</a>" +
+    (x.text ? '<p class="desc">' + esc(x.text) + "</p>" : "") +
+    '<p class="meta">' + links.join("") + tags + "</p></li>";
+}
+
+function render(){
+  var q = qEl.value.trim().toLowerCase(), osOnly = osEl.checked;
+  var html = "", shown = 0;
+  DATA.forEach(function(c){
+    var secs = "";
+    c.sections.forEach(function(s){
+      var list = s.services.filter(function(x){
+        if(osOnly && !x.os) return false;
+        return !q || x.hay.indexOf(q) > -1;
+      });
+      if(!list.length) return;
+      shown += list.length;
+      secs += '<div class="sec"><h3>' + esc(s.name) + "</h3>" +
+        (s.altText ? '<p class="alt">Instead of ' + esc(s.altText) + "</p>" : "") +
+        (s.warn ? '<p class="warn">' + s.warn + "</p>" : "") +
+        "<ul>" + list.map(toolHTML).join("") + "</ul></div>";
+    });
+    if(secs) html += '<h2 class="cat">' + esc(c.name) + "</h2>" + secs;
+  });
+  out.innerHTML = html || '<p class="none">No tool matches that search.</p>';
+  countEl.textContent = (q || osOnly) ? shown + " of " + TOTAL + " tools" : TOTAL + " tools";
+}
+
+var t;
+qEl.addEventListener("input", function(){ clearTimeout(t); t = setTimeout(render, 120); });
+osEl.addEventListener("change", render);
+document.getElementById("theme").addEventListener("click", function(){
+  var dark = getComputedStyle(document.body).backgroundColor === "rgb(21, 24, 28)";
+  document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+});
+render();
+})();
+</script>
