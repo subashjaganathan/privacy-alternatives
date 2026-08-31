@@ -6,12 +6,12 @@ replaces. Same data, three interfaces:
 
 | Page | What it is |
 |------|------------|
-| [`site/index.html`](site/index.html) | **Privacy Index** — the main build. Sidebar navigation, collapsible swap-outs, instant search, filters, saved picks, category charts and coverage gauges. |
-| [`site/atlas.html`](site/atlas.html) | **Privacy Atlas** — the graphical build. Animated hero, ambient canvas field, command palette (`Ctrl`/`Cmd` + `K`), detail drawers, card and compact layouts. |
-| [`site/list.html`](site/list.html) | **Private Alternatives** — the plain build. One column, system fonts, no motion, a search box and an open-source filter. |
+| [`docs/index.html`](docs/index.html) | **Privacy Index** — the main build. Sidebar navigation, collapsible swap-outs, instant search, filters, saved picks, category charts and coverage gauges. |
+| [`docs/atlas.html`](docs/atlas.html) | **Privacy Atlas** — the graphical build. Animated hero, ambient canvas field, command palette (`Ctrl`/`Cmd` + `K`), detail drawers, card and compact layouts. |
+| [`docs/list.html`](docs/list.html) | **Private Alternatives** — the plain build. One column, system fonts, no motion, a search box and an open-source filter. |
 
 Each page is a single HTML file with the data inlined and no runtime dependencies. Open one from disk, or
-serve the `site/` folder from any static host. Nothing is tracked, and no request leaves the page except the
+serve the `docs/` folder from any static host. Nothing is tracked, and no request leaves the page except the
 Google Fonts stylesheet used by two of the three builds.
 
 ## Build
@@ -23,14 +23,14 @@ python build.py --refresh  # pull the latest upstream dataset first, then build
 ```
 
 `build.py` reads `src/awesome-privacy.yml`, converts it to JSON (rendering the Markdown in each description),
-and inlines it into the three templates in `src/`, writing the results to `site/`. The footer of every page
+and inlines it into the three templates in `src/`, writing the results to `docs/`. The footer of every page
 carries the build date so you can tell how fresh a copy is.
 
 ```
 src/awesome-privacy.yml   the dataset (CC0, from upstream)
 src/*.tpl.html            one template per page; __DATA__ is the inlined dataset
 build.py                  the generator
-site/                     build output — this is what you deploy
+docs/                     build output — GitHub Pages serves this folder
 ```
 
 ## Features in the Index build

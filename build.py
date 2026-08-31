@@ -4,8 +4,8 @@
   python build.py            # build from the checked-in src/awesome-privacy.yml
   python build.py --refresh  # re-download the dataset first, then build
 
-Each page is one self-contained HTML file in site/ with the data inlined,
-so it works from the filesystem, from GitHub Pages, or from any static host.
+Each page is one self-contained HTML file in docs/ with the data inlined,
+so it works from the filesystem, from GitHub Pages (which serves the docs/ folder), or any static host.
 """
 
 import argparse
@@ -19,7 +19,7 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "src")
-OUT = os.path.join(ROOT, "site")
+OUT = os.path.join(ROOT, "docs")
 DATA_FILE = os.path.join(SRC, "awesome-privacy.yml")
 UPSTREAM = "https://raw.githubusercontent.com/Lissy93/awesome-privacy/main/awesome-privacy.yml"
 
@@ -141,7 +141,7 @@ def main():
         path = os.path.join(OUT, out_name)
         with open(path, "w", encoding="utf-8") as f:
             f.write(page)
-        print("wrote site/{} ({:,} bytes)".format(out_name, os.path.getsize(path)))
+        print("wrote docs/{} ({:,} bytes)".format(out_name, os.path.getsize(path)))
 
     print("{} tools across {} sections in {} categories, built {}".format(
         tools, sections, len(data), stamp))
