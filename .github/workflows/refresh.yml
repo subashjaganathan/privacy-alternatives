@@ -1,0 +1,49 @@
+name: Refresh dataset
+
+# On the 1st of every month: pull the latest Awesome Privacy dataset (CC0), rebuild the
+# three pages, and commit only if the dataset actually changed. Pages republishes docs/.
+
+on:
+  schedule:
+    - cron: "41 4 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build dependency
+        run: pip install pyyaml
+
+      - name: Rebuild from the latest dataset
+        run: python build.py --refresh
+
+      - name: Commit and publish if the dataset changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- src/awesome-privacy.yml; then
+            echo "Dataset unchanged; nothing to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/awesome-privacy.yml docs
+          git commit -m "Refresh Awesome Privacy dataset"
+          git push
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request skipped"
