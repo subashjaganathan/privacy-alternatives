@@ -69,6 +69,7 @@ categories:
           Hardened, secure and offline password manager. Does not have cloud-sync baked
           in, deemed to be [gold standard](https://keepass.info/ratings.html) for secure
           password managers. KeePass clients: [Strongbox](https://apps.apple.com/us/app/strongbox-keepass-pwsafe/id897283731)
+          *(Mac & iOS)*, [KeePassium](https://apps.apple.com/app/keepassium-keepass-passwords/id1435127111)
           *(Mac & iOS)*, [KeePassDX](https://play.google.com/store/apps/details?id=com.kunzisoft.keepass.free)
           *(Android)*, [KeeWeb](https://keeweb.info) *(Web-based/ self-hosted)*,
           [KeePassXC](https://keepassxc.org) *(Windows, Mac & Linux)*, see more KeePass
@@ -320,6 +321,17 @@ categories:
         description: >-
           Chronos Authenticator is a free, open-source two-factor authentication app for iOS, designed to provide robust
           security and reliable backup options.
+
+      - name: Autheris
+        url: https://autheris.app
+        icon: https://autheris.app/assets/img/app-icon-192.png
+        openSource: true
+        github: nerdykidtech/Autheris
+        iosApp: https://apps.apple.com/us/app/autheris/id6760686327
+        followWith: iOS
+        description: |
+          Open-source 2FA authenticator for iPhone, iPad, Mac and Apple Watch. Secrets stay
+          in the device Keychain, with no account, no analytics and optional iCloud Sync
 
       furtherInfo: >
         Check which websites support multi-factor authentication: [2fa.directory](https://2fa.directory/)
@@ -2735,6 +2747,14 @@ categories:
           Variety of lists (free and paid-for) for blocking content based on certain topics, inducing: spam, abuse,
           political, illegal, hijacked, bad peers and more.
 
+      - name: HaGeZi DNS Blocklists
+        url: https://github.com/hagezi/dns-blocklists
+        github: hagezi/dns-blocklists
+        openSource: true
+        description: |
+          A set of DNS blocklists that block ads, trackers, telemetry, phishing, malware, scams, and other unwanted domains network-wide.
+          They work for any region and with every common DNS server, ad blocker, and content blocker.
+
     #############################
     ###### Router FirmWARE ######
     #############################
@@ -3139,6 +3159,20 @@ categories:
           A free, open-source note-taking application built with Qt, focused on providing a pleasant Markdown
           editing experience. It manages notes directly as plain text files on your local system.
 
+      - name: Poznote
+        url: https://poznote.com
+        github: timothepoznanski/poznote
+        followWith: Web (self-hosted, Docker)
+        openSource: true
+        securityAudited: false
+        icon: https://raw.githubusercontent.com/timothepoznanski/poznote/main/src/favicon.ico
+        discordInvite: AWhWWSEkJ
+        description: |
+          Self-hosted notes and tasks app with rich-text, Markdown and drawing editors,
+          tags, multi-user, OIDC login and a REST API. Docker-based (PHP + SQLite); the
+          only outbound call is a daily update check. No mobile apps (PWA), no end-to-end
+          encryption.
+
       notableMentions: |
         If you are already tied into Evernote, One Note etc, then [SafeRoom](https://www.getsaferoom.com)
         is a utility that encrypts your entire notebook, before it is uploaded to the cloud.
@@ -3272,6 +3306,19 @@ categories:
           can sync via WebDAV/Dropbox/local file or self-hosted deployment.
           With a CLI, REST API and MCP for scripting, has optional BYOK AI.
 
+      - name: Vikunja
+        url: https://vikunja.io
+        github: go-vikunja/vikunja
+        openSource: true
+        icon: https://vikunja.io/favicon.ico
+        followWith: Web, Android Linux
+        description: |
+          Vikunja is an open-source to-do application. It is suitable for a wide
+          variety of projects, supporting List, Gantt, Table and Kanban views to
+          visualize all tasks in different contexts. For collaboration, it has
+          sharing support via private teams or public links. It can be self-hosted
+          or used as a managed service for a small fee.
+
     ###########################
     ###### Backup & Sync ######
     ###########################
@@ -3397,18 +3444,6 @@ categories:
           you can install items from the Sandstorm App Market with -click,
           similar to NextCloud in terms of flexibility.
 
-      - name: Vikunja
-        url: https://vikunja.io
-        icon: https://vikunja.io/favicon.ico
-        github: go-vikunja/vikunja
-        followWith: Web, Android Linux
-        description: |
-          Vikunja is an open-source to-do application. It is suitable for a wide
-          variety of projects, supporting List, Gantt, Table and Kanban views to
-          visualize all tasks in different contexts. For collaboration, it has
-          sharing support via private teams or public links. It can be self-hosted
-          or used as a managed service for a small fee.
-
 
     ###########################
     ###### Cloud Storage ######
@@ -3500,16 +3535,6 @@ categories:
     - name: Secret Sharing
       alternativeTo: ['pastebin', 'hastebin', 'ghostbin', 'justpaste.it']
       services:
-      - name: Hemmelig.app
-        url: https://hemmelig.app/
-        icon: https://hemmelig.app/icons/icon-512x512.png
-        openSource: true
-        github: HemmeligOrg/Hemmelig.app
-        description: |
-          Share rich text and files securely with locally encrypted messages that automatically self-destruct, or
-          invite others to send you a secret. Allows setting maximum views, webhooks, expiration times and IP restrictions.
-          Open source and self-hostable.
-
       - name: crypt.fyi
         url: https://crypt.fyi
         icon: https://www.crypt.fyi/logo.ico
@@ -3529,6 +3554,16 @@ categories:
         description: |
           1time.io - Zero-knowledge one-time secret sharing with AES-256-GCM browser-side
           encryption, HKDF key derivation, CLI tool, and Docker self-hosting.
+
+      - name: SkySend
+        url: https://skysend.app/
+        icon: https://skysend.app/logo.svg
+        openSource: true
+        github: skyfay/skysend
+        description: |
+          Share end-to-end encrypted Markdown notes, files, code and passwords/keys,
+          or request secrets from others. Set a password, expiration time and/or maximum views.
+          No account necessary. Self-hostable and has a client and admin CLI.
 
     ########################
     ###### File Drop ######
@@ -4451,6 +4486,17 @@ categories:
         description: |
           Blocks unauthorized webcam access.
 
+      - name: Win11Debloat
+        url: https://github.com/Raphire/Win11Debloat
+        github: Raphire/Win11Debloat
+        openSource: true
+        icon: https://avatars.githubusercontent.com/u/9938813?s=256&v=4
+        description: |
+          Open-source PowerShell script that removes bloatware, disables telemetry
+          and pre-installed apps for Windows 10 and 11, with whitelists/blacklists
+          reversion support. It heavily modifies the OS, so a restore point
+          is advised.
+
       wordOfWarning: |
         (The above software was last tested on 01/05/20).
         Many of the above tools are not necessary or suitable for beginners,
@@ -4694,6 +4740,21 @@ categories:
         securityAudited: false
         openSource: true
 
+    - name: Wearables & Health
+      alternativeTo: ['google fit', 'apple health', 'samsung health']
+      services:
+      - name: Gadgetbridge
+        description: |
+          Open source Android app that connects smartwatches and fitness trackers to
+          your phone without the vendor app or cloud account. Supports 30+ brands
+          (Mi Band, Amazfit, Pebble, Huawei), though feature parity and reliability
+          vary by device.
+        url: https://gadgetbridge.org/
+        icon: https://codeberg.org/Freeyourgadget/Gadgetbridge/raw/branch/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+        codeberg: Freeyourgadget/Gadgetbridge
+        followWith: Android
+        openSource: true
+
   - name: Finance
     sections:
     - name: Cryptocurrencies
@@ -4851,6 +4912,17 @@ categories:
         including crypto exchanges, swap services, P2P markets, and non-custodial wallets. Each entry
         is tagged with its KYC level, jurisdiction, supported payment methods, and a trust score
         reflecting audit history and known incidents.
+
+    - name: Crypto Tools
+      services:
+      - name: Umbra
+        url: https://app.umbra.cash
+        icon: https://app.umbra.cash/icons/favicon-128x128.png
+        github: ScopeLift/umbra-protocol
+        followWith: Ethereum
+        openSource: true
+        description: |
+          Umbra is a stealth address protocol on the EVM. It allows users to send payments to a one-time address controlled by a recipient without their interaction, promoting unlinkability (if proper hygiene is followed) without resorting to mixers or pools.
 
     - name: Virtual Credit Cards
       alternativeTo: ['visa', 'mastercard', 'american express', 'discover', 'capital one']
@@ -5267,11 +5339,58 @@ categories:
           on Linux, Windows and Mac. Replaces the official proprietary clients, though it
           still connects to your third-party store accounts.
     - name: Media Servers
-      alternativeTo: ['plex', 'emby', 'kodi', 'jellyfin', 'universal media server']
-      services: []
+      alternativeTo: ['plex', 'emby']
+      services:
+      - name: Jellyfin
+        url: https://jellyfin.org
+        icon: https://avatars.githubusercontent.com/u/45698031?s=256&v=4
+        openSource: true
+        followWith: Self-hosted
+        github: jellyfin/jellyfin
+        iosApp: https://apps.apple.com/us/app/jellyfin-mobile/id1480192618
+        androidApp: org.jellyfin.mobile
+        discordInvite: zHBxVSXdBV
+        subreddit: jellyfin
+        description: |
+          Self-hosted server for streaming your own films, TV, music and live TV to apps
+          on most devices. Volunteer-run, with no telemetry or paid tiers. Some media
+          endpoints don't require login, so avoid exposing it directly to the internet.
+      - name: Navidrome
+        url: https://www.navidrome.org
+        icon: https://avatars.githubusercontent.com/u/26692192?s=256&v=4
+        openSource: true
+        followWith: Self-hosted
+        github: navidrome/navidrome
+        discordInvite: xh7j7yF
+        subreddit: navidrome
+        description: |
+          Self-hosted music streaming server with a web player, and support for the many
+          Subsonic-compatible apps (there's no official mobile app)
+      - name: Koel
+        url: https://koel.dev
+        icon: https://avatars.githubusercontent.com/u/20983373
+        openSource: true
+        followWith: Self-hosted
+        github: koel/koel
+        androidApp: phanan.koel.app
+        iosApp: https://apps.apple.com/app/koel-player/id1576886982
+        description: |
+          Music streaming solution that turns your personal collection into a sleek,
+          web-based listening experience. With (smart) playlists, scrobbling, podcasts, radio,
+          Last.fm/Spotify/MusicBrainz integrations and an AI for natural-language commands.
     - name: Music Players
       alternativeTo: ['spotify', 'apple music', 'google play music', 'amazon music', 'pandora']
-      services: []
+      services:
+      - name: Feishin
+        url: https://github.com/jeffvli/feishin
+        icon: https://raw.githubusercontent.com/jeffvli/feishin/refs/heads/development/media/feishin.svg
+        openSource: true
+        followWith: Self-hosted
+        github: jeffvli/feishin
+        description: |
+          A desktop or self-hosted web music player for Navidrome, Jellyfin and
+          OpenSubsonic compatible music servers. A fork with support for Plex is also
+          available.
 
     - name: Video Players
       alternativeTo: ['windows media player', 'quicktime', 'mplayer', 'kmplayer']

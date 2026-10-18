@@ -1,7 +1,15 @@
 <title>Privacy Index</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>/* self-hosted fonts (latin) - no third-party requests */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Archivo-500.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Archivo-500.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/Archivo-500.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/IBMPlexMono-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/IBMPlexMono-500.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/IBMPlexMono-600.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/Newsreader-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Newsreader-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Newsreader-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <style>
 :root{
   --paper:#e7ebf1; --card:#ffffff; --card-2:#f2f5f9; --rule:#c9d3e0; --rule-soft:#dde4ed;
@@ -221,8 +229,9 @@ footer a{color:var(--ink-2);}
 .totop.show{opacity:1; pointer-events:auto;}
 
 @media (max-width:940px){
-  .shell{grid-template-columns:1fr; gap:0;}
-  nav.rail{position:static; max-height:none; padding:16px 0 0; overflow:visible;}
+  /* minmax(0,1fr) + min-width:0 let the chip row scroll instead of widening the page */
+  .shell{grid-template-columns:minmax(0,1fr); gap:0;}
+  nav.rail{position:static; max-height:none; padding:16px 0 0; overflow:visible; min-width:0;}
   nav.rail .lbl{display:none;}
   .rail ol{display:flex; gap:6px; overflow-x:auto; padding-bottom:6px;}
   .rail li a{white-space:nowrap; border-left:0; background:var(--card); border:1px solid var(--rule); border-radius:999px;}
@@ -258,6 +267,112 @@ footer a{color:var(--ink-2);}
   .cat{break-before:page;}
   .cat:first-of-type{break-before:auto;}
 }
+
+/* ================= professional theme: Carbon 60-grade category colours, one brand gradient ================= */
+:root{
+  --brand:linear-gradient(90deg,#0f62fe,#6929c4);
+  --os:#198038; --os-bg:#defbe6; --au:#6929c4; --au-bg:#e8daff; --cr:#8a3800; --cr-bg:#fff2e8;
+  --mo:#0043ce; --mo-bg:#edf5ff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --os:#42be65; --os-bg:rgba(36,161,72,.18); --au:#be95ff; --au-bg:rgba(138,63,252,.2);
+    --cr:#ff832b; --cr-bg:rgba(255,131,43,.15); --mo:#78a9ff; --mo-bg:rgba(15,98,254,.2);
+  }
+}
+:root[data-theme="dark"]{
+  --os:#42be65; --os-bg:rgba(36,161,72,.18); --au:#be95ff; --au-bg:rgba(138,63,252,.2);
+  --cr:#ff832b; --cr-bg:rgba(255,131,43,.15); --mo:#78a9ff; --mo-bg:rgba(15,98,254,.2);
+}
+/* .tint elements carry --c (category colour, set inline); --cx is the readable variant for text and strokes */
+.tint{--cx:var(--c);}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tint{--cx:color-mix(in oklab, var(--c) 58%, white);} }
+:root[data-theme="dark"] .tint{--cx:color-mix(in oklab, var(--c) 58%, white);}
+
+/* header */
+.mark .dot{width:10px; height:10px; background:var(--brand);}
+#prog{height:3px; background:var(--brand);}
+.chip[data-f="os"][aria-pressed="true"]{background:var(--os); border-color:var(--os); color:var(--on-accent);}
+.chip[data-f="au"][aria-pressed="true"]{background:var(--au); border-color:var(--au); color:var(--on-accent);}
+.chip[data-f="cr"][aria-pressed="true"]{background:var(--cr); border-color:var(--cr); color:var(--on-accent);}
+.chip[data-f="mo"][aria-pressed="true"]{background:var(--mo); border-color:var(--mo); color:var(--on-accent);}
+
+/* hero: a quiet two-tone wash, brand gradient on the emphasis, swap spotlight card */
+.hero{position:relative; isolation:isolate;}
+.hero::before{
+  content:""; position:absolute; inset:-30px 0 0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(42% 55% at 12% 18%, rgba(15,98,254,.09), transparent 70%),
+    radial-gradient(38% 52% at 88% 26%, rgba(105,41,196,.08), transparent 70%);
+}
+.hero h1 em{
+  background:var(--brand); -webkit-background-clip:text; background-clip:text;
+  color:transparent; -webkit-text-fill-color:transparent; padding-right:.08em;
+}
+.hero-top{display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:40px; align-items:center;}
+.swapcard{position:relative; overflow:hidden; border-radius:14px; padding:22px 22px 18px; background:var(--card);
+  border:1px solid var(--rule); box-shadow:var(--shadow), 0 24px 48px -36px rgba(20,29,41,.45);}
+.swapcard::before{content:""; position:absolute; inset:0 0 auto; height:3px; background:var(--cx); transition:background .4s;}
+.sw-lbl{display:flex; justify-content:space-between; gap:10px; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3);}
+.sw-lbl span:first-child{color:var(--ink-2); font-weight:600;}
+.sw-body{display:grid; gap:10px; margin-top:16px; transition:opacity .34s ease, transform .34s ease;}
+.swapcard.out .sw-body{opacity:0; transform:translateY(6px);}
+.sw-from{display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:9px; background:var(--card-2); border:1px solid var(--rule-soft);}
+.sw-k{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);}
+.sw-from b{font-size:16px; color:var(--ink-2); text-decoration:line-through; text-decoration-color:var(--ink-3); text-decoration-thickness:1.5px;}
+.sw-arrow{justify-self:center; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--rule); color:var(--ink-3); background:var(--card);}
+.sw-arrow svg{width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+.sw-to{display:flex; align-items:center; gap:13px; padding:13px 14px; border-radius:11px;
+  border:1px solid color-mix(in srgb, var(--cx) 38%, var(--rule)); background:color-mix(in srgb, var(--cx) 5%, var(--card));}
+.sw-to b{display:block; font-size:19px; letter-spacing:-.02em;}
+.sw-to small{display:block; margin-top:2px; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--cx);}
+.sw-flags{display:flex; gap:6px; flex-wrap:wrap; min-height:20px;}
+.sw-dots{display:flex; gap:5px; margin-top:14px;}
+.sw-dots i{width:16px; height:3px; border-radius:2px; background:var(--rule-soft); transition:background .3s;}
+.sw-dots i.on{background:var(--ink-3);}
+@media (max-width:1120px){ .hero-top{grid-template-columns:1fr; gap:28px;} .swapcard{max-width:440px;} }
+
+/* stats + ring gauges: ink numbers, small colour markers, solid rings */
+.stats{box-shadow:var(--shadow);}
+.stat span::before{content:""; display:inline-block; width:7px; height:7px; border-radius:2px; margin-right:7px; vertical-align:1px; background:#0f62fe;}
+.stat:nth-child(2) span::before{background:#6929c4;}
+.stat:nth-child(3) span::before{background:#007d79;}
+.ring{box-shadow:var(--shadow); align-content:center;}
+.strip{height:50px;}
+
+/* categories: solid icon tile, colour rule, colour sparkline and counts */
+.cat-head{border-bottom:2px solid var(--cx);}
+.cat-head .icon{width:34px; height:34px; border-radius:8px; color:#fff; background:var(--c);}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cat-head .icon{background:color-mix(in oklab, var(--c) 80%, white);} }
+:root[data-theme="dark"] .cat-head .icon{background:color-mix(in oklab, var(--c) 80%, white);}
+.cat-head .icon svg{width:18px; height:18px; stroke-width:1.8;}
+/* the count sits on the grey paper, not a card: darken it a step so small text keeps 4.5:1 */
+.cat-head .n{color:color-mix(in oklab, var(--c) 80%, black); font-weight:600;}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cat-head .n{color:var(--cx);} }
+:root[data-theme="dark"] .cat-head .n{color:var(--cx);}
+.spark i{background:var(--cx); opacity:.35;}
+.spark i.big{opacity:.9;}
+.cat section.sec{border-left:3px solid var(--cx);}
+.cat section.sec.open > .sec-head{background:color-mix(in srgb, var(--cx) 5%, transparent);}
+.cat .prop i{background:var(--cx); opacity:.9;}
+.cat .sec-head .count{color:var(--cx); font-weight:600;}
+.cat .star[aria-pressed="true"], .cat .star:hover{color:var(--cx);}
+
+/* tool tiles: soft tint of the category colour with coloured initials */
+.cat .glyph, .swapcard .glyph{color:var(--cx); background:color-mix(in srgb, var(--cx) 13%, var(--card));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--cx) 28%, transparent);}
+.badge{font-weight:600;}
+.b-mo{background:var(--mo-bg); color:var(--mo);}
+
+/* side rail: a dot in each category colour, active item takes the colour */
+.rail > ol > li.tint > a, .rail > ol > li.tint > a:hover, .rail > ol > li.tint > a.on{
+  padding-left:26px; background-image:radial-gradient(circle, var(--cx) 3.4px, transparent 4px);
+  background-repeat:no-repeat; background-position:10px 50%; background-size:10px 10px;
+}
+.rail > ol > li.tint > a.on{border-left-color:var(--cx); color:var(--ink);}
+
+@media (prefers-reduced-motion: reduce){ .sw-body, .swapcard::before, .sw-dots i{transition:none;} }
+@media print{ .swapcard, .hero::before{display:none !important;} }
 </style>
 
 <div id="prog"></div>
@@ -266,7 +381,7 @@ footer a{color:var(--ink-2);}
     <div class="mark"><span class="dot"></span>Privacy Index</div>
     <label class="searchwrap">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
-      <input id="q" type="search" placeholder="Search 389 tools, or what you want to replace&hellip;" autocomplete="off" aria-label="Search tools">
+      <input id="q" type="search" placeholder="Search __TOOLS__ tools, or what you want to replace&hellip;" autocomplete="off" aria-label="Search tools">
       <span class="kbd">/</span>
     </label>
     <div class="chips" id="chips">
@@ -291,9 +406,18 @@ footer a{color:var(--ink-2);}
   </nav>
   <main>
     <div class="hero">
+      <div class="hero-top">
+        <div class="hero-copy">
       <p class="lbl">A directory of software that respects you</p>
       <h1>Swap the tools that <em>watch you</em> for ones that don&rsquo;t.</h1>
-      <p class="intro">Three hundred and eighty-nine privacy-respecting apps and services, grouped by the mainstream product each one replaces. Every entry is flagged for open source code, published security audits, and anonymous payment, so you can see what you&rsquo;re trusting before you install it.</p>
+      <p class="intro">__TOOLS_WORDS__ privacy-respecting apps and services, grouped by the mainstream product each one replaces. Every entry is flagged for open source code, published security audits, and anonymous payment, so you can see what you&rsquo;re trusting before you install it.</p>
+        </div>
+        <div class="swapcard tint" id="swap" aria-hidden="true">
+          <div class="sw-lbl"><span>Swap spotlight</span><span>real picks from the list</span></div>
+          <div class="sw-body"></div>
+          <div class="sw-dots"></div>
+        </div>
+      </div>
       <div class="dash">
         <div class="dash-main">
           <div class="stats" id="stats"></div>
@@ -368,17 +492,28 @@ function icon(name){
   return '<span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24">' + (ICONS[name] || '<circle cx="12" cy="12" r="8"/>') + "</svg></span>";
 }
 
+/* ---------- one colour per category: IBM Carbon 60-grade tones (dark mode lightens them in CSS) ---------- */
+var CAT_COLORS = {
+  "Essentials":"#0f62fe", "Communication":"#8a3ffc", "Security Tools":"#da1e28", "Networking":"#0072c3",
+  "Productivity":"#198038", "Utilities":"#ba4e00", "Operating Systems":"#6929c4", "Development":"#007d79",
+  "Smart Home & IoT":"#8e6a00", "Finance":"#0e6027", "Social":"#d02670", "Media":"#a2191f", "Creativity":"#00539a"
+};
+var SPARE = ["#0f62fe", "#8a3ffc", "#007d79", "#0072c3", "#198038", "#ba4e00"];
+function catColor(name){ return CAT_COLORS[name] || SPARE[hue(name) % SPARE.length]; }
+/* per-tool variation of the category gradient: angle and how far it fades toward white */
+function tileStyle(n){ var h = hue(n); return "--a:" + (100 + h % 80) + "deg;--m:" + (55 + h % 30) + "%"; }
+
 /* ---------- hero graphics: proportional strip + ring gauges ---------- */
 (function heroGraphics(){
   var cats = DATA.map(function(c){
     return { name:c.name, id:"c-" + slug(c.name), n:c.sections.reduce(function(a,s){ return a + s.services.length; }, 0) };
   }).sort(function(a,b){ return b.n - a.n; });
   var top = cats[0].n;
-  document.getElementById("strip").innerHTML = cats.map(function(d, i){
-    /* one measure, one hue: darker band = more alternatives */
-    var l = 30 + (i / (cats.length - 1)) * 34;
+  document.getElementById("strip").innerHTML = cats.map(function(d){
+    /* each band in its category colour, so the strip doubles as the colour key */
+    var col = catColor(d.name);
     var wide = d.n / nSvc * 100;
-    return '<button class="seg" data-go="' + d.id + '" style="flex:' + d.n + ' 1 0; background:hsl(222,' + (62 - i * 2) + '%,' + l + '%)" ' +
+    return '<button class="seg" data-go="' + d.id + '" style="flex:' + d.n + ' 1 0; background:' + col + '" ' +
       'title="' + esc(d.name) + ": " + d.n + ' alternatives (' + Math.round(wide) + '% of the list)">' +
       (wide > 6 ? "<b>" + d.n + "</b>" : "") + (wide > 9 ? "<span>" + esc(d.name) + "</span>" : "") + "</button>";
   }).join("");
@@ -393,14 +528,14 @@ function icon(name){
   var gauges = [
     ["Open", "source", nOs, "var(--os)"],
     ["Publicly", "audited", nAu, "var(--au)"],
-    ["Phone", "apps", nMob, "var(--accent)"]
+    ["Phone", "apps", nMob, "var(--mo)"]
   ];
   var C = 2 * Math.PI * 26;
   document.getElementById("rings").innerHTML = gauges.map(function(g){
     var pct = g[2] / nSvc;
     return '<div class="ring"><svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="' + g[0] + " " + g[1] + ": " + g[2] + " of " + nSvc + '">' +
       '<circle class="track" cx="32" cy="32" r="26"/>' +
-      '<circle class="val" cx="32" cy="32" r="26" stroke="' + g[3] + '" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '" data-off="' + (C * (1 - pct)).toFixed(1) + '"/>' +
+      '<circle class="val" cx="32" cy="32" r="26" style="stroke:' + g[3] + '" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '" data-off="' + (C * (1 - pct)).toFixed(1) + '"/>' +
       '<text class="pct" x="32" y="36" text-anchor="middle">' + Math.round(pct * 100) + "%</text></svg>" +
       '<span class="cap"><b>' + g[2] + "</b>" + g[0] + " " + g[1] + "</span></div>";
   }).join("");
@@ -412,6 +547,44 @@ function icon(name){
     });
   }, { threshold:.3 });
   io.observe(document.getElementById("rings"));
+})();
+
+/* ---------- hero swap spotlight: real "instead of X, use Y" pairs from the data ---------- */
+(function swapSpotlight(){
+  var card = document.getElementById("swap");
+  if(!card) return;
+  var picks = [];
+  DATA.forEach(function(c){ c.sections.forEach(function(s){
+    if(s.alt.length && s.services.length) picks.push({ from:pretty(s.alt)[0], to:s.services[0], sec:s.name, cat:c.name });
+  }); });
+  if(!picks.length){ card.style.display = "none"; return; }
+  /* lead with swaps everyone recognises, then a varied but stable order for the rest */
+  var FAMOUS = ["gmail", "whatsapp", "chrome", "google", "lastpass", "dropbox", "google maps", "zoom", "evernote", "windows", "google calendar", "github"];
+  function rank(p){ var r = FAMOUS.indexOf(p.from.toLowerCase()); return r < 0 ? 99 : r; }
+  picks.sort(function(a, b){ return (rank(a) - rank(b)) || (hue(a.sec + a.to.n) - hue(b.sec + b.to.n)); });
+  var body = card.querySelector(".sw-body"), dots = card.querySelector(".sw-dots"), i = 0;
+  function paint(){
+    var p = picks[i % picks.length], x = p.to;
+    var flags = (x.os ? '<span class="badge b-os">Open source</span>' : "") + (x.au ? '<span class="badge b-au">Audited</span>' : "") +
+      ((x.ios || x.and) ? '<span class="badge b-mo">Mobile app</span>' : "");
+    card.style.setProperty("--c", catColor(p.cat));
+    body.innerHTML =
+      '<div class="sw-from"><span class="sw-k">Instead of</span><b>' + esc(p.from) + "</b></div>" +
+      '<div class="sw-arrow"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>' +
+      '<div class="sw-to"><span class="glyph" style="' + tileStyle(x.n) + '">' + esc(initials(x.n)) + "</span>" +
+        "<div><b>" + esc(x.n) + "</b><small>" + esc(p.sec) + "</small></div></div>" +
+      '<div class="sw-flags">' + flags + "</div>";
+    dots.innerHTML = [0, 1, 2, 3, 4].map(function(k){ return '<i class="' + (k === i % 5 ? "on" : "") + '"></i>'; }).join("");
+  }
+  paint();
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var seen = true;
+  new IntersectionObserver(function(es){ seen = es[0].isIntersecting; }).observe(card);
+  setInterval(function(){
+    if(!seen || document.hidden) return;
+    card.classList.add("out");
+    setTimeout(function(){ i++; paint(); card.classList.remove("out"); }, 340);
+  }, 3600);
 })();
 
 /* ---------- scroll progress ---------- */
@@ -514,9 +687,8 @@ function svcHTML(x, term, key){
   if(x.tos) links.push('<a href="https://tosdr.org/en/service/' + x.tos + '" target="_blank" rel="noopener noreferrer">Terms rating</a>');
   if(x.and) links.push('<a href="https://play.google.com/store/apps/details?id=' + esc(x.and) + '" target="_blank" rel="noopener noreferrer">Android</a>');
   if(x.ios) links.push('<a href="' + esc(x.ios === true ? x.u : x.ios) + '" target="_blank" rel="noopener noreferrer">iOS</a>');
-  var h = hue(x.n);
   return '<li class="svc" id="' + x.tid + '">' +
-    '<span class="glyph" aria-hidden="true" style="background:hsl(' + h + ",var(--glyph-s),var(--glyph-l))\">" + esc(initials(x.n)) + "</span>" +
+    '<span class="glyph" aria-hidden="true" style="' + tileStyle(x.n) + '">' + esc(initials(x.n)) + "</span>" +
     '<div><div class="svc-top"><a class="name" href="' + esc(x.u) + '" target="_blank" rel="noopener noreferrer">' +
       highlight(esc(x.n), term) + "</a>" +
       (x.f ? '<span class="fw">' + esc(x.f) + "</span>" : "") + b +
@@ -578,9 +750,10 @@ function render(){
     var big = Math.max.apply(null, sizes);
     var spark = '<span class="spark" aria-hidden="true" title="' + sizes.length + ' swap-outs in this category">' +
       sizes.map(function(n){ return '<i class="' + (n === big ? "big" : "") + '" style="height:' + Math.max(4, Math.round(n / big * 22)) + 'px"></i>'; }).join("") + "</span>";
-    html += '<div class="cat" id="c-' + slug(c.name) + '"><div class="cat-head">' + icon(c.name) + "<h2>" + esc(c.name) +
+    var col = catColor(c.name);
+    html += '<div class="cat tint" style="--c:' + col + '" id="c-' + slug(c.name) + '"><div class="cat-head">' + icon(c.name) + "<h2>" + esc(c.name) +
       "</h2>" + spark + '<span class="n">' + catCount + " tools</span></div>" + secHTML + "</div>";
-    rail += '<li data-c="c-' + slug(c.name) + '"><a href="#c-' + slug(c.name) + '">' + esc(c.name) +
+    rail += '<li class="tint" style="--c:' + col + '" data-c="c-' + slug(c.name) + '"><a href="#c-' + slug(c.name) + '">' + esc(c.name) +
       "<i>" + catCount + "</i></a><ol>" + subRail + "</ol></li>";
   });
 

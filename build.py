@@ -9,6 +9,8 @@ so it works from the filesystem, from GitHub Pages (which serves the docs/ folde
 """
 
 import argparse
+import base64
+import hashlib
 import html
 import json
 import os
@@ -37,6 +39,47 @@ def refresh():
     with open(DATA_FILE, "wb") as f:
         f.write(body)
     print("saved {} ({:,} bytes)".format(os.path.relpath(DATA_FILE, ROOT), len(body)))
+
+
+ONES = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+        "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+
+
+def words(n):
+    """399 -> 'three hundred and ninety-nine' (British style, for the Index intro)."""
+    if n < 20:
+        return ONES[n] or "zero"
+    if n < 100:
+        return TENS[n // 10] + ("-" + ONES[n % 10] if n % 10 else "")
+    if n < 1000:
+        return ONES[n // 100] + " hundred" + (" and " + words(n % 100) if n % 100 else "")
+    return "{:,}".format(n)
+
+
+SCRIPT_RE = re.compile(r"<script(?P<attrs>[^>]*)>(?P<body>.*?)</script>", re.S)
+
+
+def harden(page):
+    """Give the page a proper document head and lock it down.
+
+    Standards mode, a mobile viewport, no referrer sent to the listed sites, and a
+    Content-Security-Policy that runs only this page's own inline script (by SHA-256)
+    and loads nothing from any other origin. The JSON data block is never executed,
+    so it needs no hash.
+    """
+    hashes = []
+    for m in SCRIPT_RE.finditer(page):
+        if "application/json" in m.group("attrs"):
+            continue
+        digest = hashlib.sha256(m.group("body").encode("utf-8")).digest()
+        hashes.append("'sha256-{}'".format(base64.b64encode(digest).decode()))
+    csp = ("default-src 'none'; script-src {}; style-src 'unsafe-inline'; font-src 'self'; "
+           "img-src 'self' data:; base-uri 'none'; form-action 'none'").format(" ".join(hashes) or "'none'")
+    return ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+            '<meta name="referrer" content="no-referrer">\n'
+            '<meta http-equiv="Content-Security-Policy" content="{}">\n'.format(csp) + page)
 
 
 def md(t):
@@ -137,9 +180,14 @@ def main():
     for tpl_name, out_name in PAGES:
         with open(os.path.join(SRC, tpl_name), encoding="utf-8") as f:
             tpl = f.read()
-        page = tpl.replace("__DATA__", payload).replace("__BUILT__", stamp)
+        # counts first, so the inlined data can never be touched by a placeholder
+        for key, value in (("__TOOLS_WORDS__", words(tools).capitalize()), ("__TOOLS__", str(tools)),
+                           ("__SECTIONS__", str(sections)), ("__CATEGORIES__", str(len(data))),
+                           ("__BUILT__", stamp)):
+            tpl = tpl.replace(key, value)
+        page = harden(tpl.replace("__DATA__", payload))
         path = os.path.join(OUT, out_name)
-        with open(path, "w", encoding="utf-8") as f:
+        with open(path, "w", encoding="utf-8", newline="\n") as f:  # same bytes on every OS
             f.write(page)
         print("wrote docs/{} ({:,} bytes)".format(out_name, os.path.getsize(path)))
 

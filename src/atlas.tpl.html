@@ -1,7 +1,16 @@
 <title>Privacy Atlas</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap">
+<style>/* self-hosted fonts (latin) - no third-party requests */
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/InstrumentSerif-400-italic.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/InstrumentSerif-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/JetBrainsMono-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/JetBrainsMono-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/JetBrainsMono-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;font-display:swap;src:url(fonts/Outfit-300.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Outfit-300.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Outfit-300.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Outfit-300.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/Outfit-300.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+</style>
 <style>
 /* ============ tokens: dark-first, light supported ============ */
 :root{
@@ -264,7 +273,7 @@ footer a{color:var(--ink-2);}
 
 <main class="wrap">
   <section class="hero">
-    <p class="eyebrow">389 alternatives &middot; 91 swap-outs &middot; 13 categories</p>
+    <p class="eyebrow">__TOOLS__ alternatives &middot; __SECTIONS__ swap-outs &middot; __CATEGORIES__ categories</p>
     <h1>Every app you use is a <span class="hl">choice</span> about who watches.</h1>
     <p class="lede">An atlas of privacy-respecting software, mapped against the mainstream product each one replaces. Filter by what you actually care about &mdash; open code, a published audit, payment that isn&rsquo;t tied to your name &mdash; then read the case for each pick before you switch.</p>
     <div class="swap" id="swap" aria-live="off"></div>
@@ -272,7 +281,7 @@ footer a{color:var(--ink-2);}
       <button class="btn primary" id="startBrowse">Browse the atlas
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"></path></svg>
       </button>
-      <button class="btn quiet" id="openPal2">Search 389 tools <kbd class="mono" style="font-size:11px;opacity:.7">Ctrl K</kbd></button>
+      <button class="btn quiet" id="openPal2">Search __TOOLS__ tools <kbd class="mono" style="font-size:11px;opacity:.7">Ctrl K</kbd></button>
     </div>
   </section>
 

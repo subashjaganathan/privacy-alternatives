@@ -46,8 +46,12 @@ to the entry and expands it.
 **Print** — printing the Index expands every section, drops the interface chrome, and prints each link's
 destination next to it, so a paper copy stays usable.
 
-Everything runs in the page. There is no account, no analytics and no tracking, and no network request
-except the Google Fonts stylesheet used by two of the three pages.
+Everything runs in the page. There is no account, no analytics and no tracking, and no third-party
+requests at all: the fonts are self-hosted, a Content-Security-Policy blocks every other origin and only
+runs each page's own script (pinned by hash), and links to the listed tools send no referrer.
+
+The dataset refreshes itself on the 1st of every month (`.github/workflows/refresh.yml`); the footer's
+"Data snapshot" date shows when it last changed.
 
 ## Run it yourself
 
@@ -64,6 +68,8 @@ python build.py --refresh  # download the latest dataset first, then build
 
 `build.py` converts `src/awesome-privacy.yml` to JSON, renders the Markdown in each description, and inlines
 the result into the templates in `src/`, writing `docs/index.html`, `docs/atlas.html` and `docs/list.html`.
+It also adds each page's document head, referrer policy and Content-Security-Policy (with a SHA-256 hash of the
+page's inline script, so edit the templates and rebuild rather than editing `docs/` by hand). Fonts live in `docs/fonts/`.
 The footer of every page shows the build date, so you can tell how current a copy is.
 
 ```
