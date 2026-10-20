@@ -76,7 +76,7 @@ def harden(page):
         hashes.append("'sha256-{}'".format(base64.b64encode(digest).decode()))
     csp = ("default-src 'none'; script-src {}; style-src 'unsafe-inline'; font-src 'self'; "
            "img-src 'self' data:; base-uri 'none'; form-action 'none'").format(" ".join(hashes) or "'none'")
-    return ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
+    return ('<!doctype html>\n<html lang="en" data-theme="light">\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="referrer" content="no-referrer">\n'
             '<meta http-equiv="Content-Security-Policy" content="{}">\n'.format(csp) + page)
