@@ -3245,6 +3245,16 @@ categories:
           Keystore. Events are not end-to-end encrypted, so sync security depends on
           your provider.
 
+      - name: Calendula
+        url: https://codeberg.org/jlmakiola/calendula
+        codeberg: jlmakiola/calendula
+        androidApp: de.jeanlucmakiola.calendula
+        followWith: Android
+        icon: https://codeberg.org/jlmakiola/calendula/media/branch/main/fastlane/metadata/android/en-US/images/icon.png
+        description: |
+          A modern Material 3 Expressive calendar for Android. Reads, writes, and
+          reminds — on top of the system calendar, with zero network access.
+
     ########################
     ###### Scheduling ######
     ########################
@@ -3520,6 +3530,22 @@ categories:
           Has optional open-source client-side encryption, compatible with RClone. Can connect to other cloud services
           and MS Office. 10GB free, on ISO27001 servers (DE).
 
+      - name: Proton Drive
+        url: https://proton.me/drive
+        icon: https://drive.proton.me/assets/android-chrome-256x256.png
+        github: ProtonDriveApps/android-drive
+        openSource: true
+        securityAudited: true
+        acceptsCrypto: true
+        tosdrId: 491
+        androidApp: me.proton.android.drive
+        iosApp: https://apps.apple.com/us/app/proton-drive-cloud-storage/id1509667851
+        subreddit: ProtonDrive
+        description: |
+          End-to-end encrypted cloud storage from the Proton suite, based in Switzerland.
+          Open source apps for web, desktop and mobile, with file sharing and photo backup.
+          Free plan available.
+
       notableMentions: |
         An alternative option, is to use a cloud computing provider, and implement
         the syncing functionality yourself, and encrypt data locally before
@@ -3571,15 +3597,6 @@ categories:
     - name: File Drop
       alternativeTo: ['wetransfer', 'send anywhere', 'filemail', 'smash']
       services:
-      - name: FileSend
-        url: https://filesend.standardnotes.org
-        github: standardnotes/FileSend
-        followWith: Web
-        description: |
-          Simple, encrypted file sharing, with a 500mb limit and 5-day retention. Files are secured with client-side AES-256
-          encryption and no IP address or device info is logged. Files are permanently deleted after download or after specified
-          duration. Developed by StandardNotes, and has built-in integration with the SN app.
-
       - name: OnionShare
         url: https://onionshare.org/
         github: micahflee/onionshare
@@ -3762,6 +3779,48 @@ categories:
         followWith: Linux
         openSource: true
 
+    ###############################
+    ######## Office Suites ########
+    ###############################
+    - name: Office Suites
+      alternativeTo: ['microsoft office', 'microsoft 365', 'apple iwork', 'google workspace']
+      intro: |
+        Mainstream office suites use a lot of telemetry, which analyzes not
+        only how you're using the applications, but can also include parts
+        of your actual work. A privacy-respecting office suite works offline
+        and collects nothing about you.
+      services:
+      - name: Euro-Office
+        url: https://github.com/Euro-Office/DesktopEditors
+        github: Euro-Office/DesktopEditors
+        icon: https://raw.githubusercontent.com/Euro-Office/desktop-apps/refs/heads/main/win-linux/res/icons/app-icon-eo.svg
+        followWith: Linux, MacOS, Windows
+        openSource: true
+        description: |
+          With Euro-Office you can view, edit and work with others on
+          documents, spreadsheets, presentations and PDF files. You can
+          connect to a NextCloud server for real-time collaboration.
+      - name: LibreOffice
+        url: https://www.libreoffice.org
+        github: LibreOffice/core
+        icon: https://raw.githubusercontent.com/LibreOffice/core/refs/heads/master/sysui/desktop/icons/soffice.ico
+        followWith: Linux, MacOS, Windows
+        openSource: true
+        description: |
+          LibreOffice is a free and open-source office productivity software
+          suite with applications for word processing, spreadsheets,
+          presentations, vector graphics, formulas and database management.
+      - name: Collabora Office
+        url: https://www.collaboraonline.com/collabora-office
+        github: CollaboraOnline/online.mirror
+        icon: https://www.collaboraonline.com/favicon.ico
+        followWith: Linux, MacOS, Windows
+        openSource: true
+        description: |
+          Brings the online suite to the local desktop. Collabora is based on
+          LibreOffice, but comes with the simpler and more modern web interface
+          of Collabora Online.
+
   - name: Utilities
     sections:
     ##############################
@@ -3908,6 +3967,21 @@ categories:
           Mailvelope is an addon for email applications, that makes using PGP very easy for beginners. You can use the hosted
           version for free, or opt to host your own instance.
           Works with Gmail, Yahoo, Outlook, GMX, Posteo, Web.de, FreeNet.de, Mailbox.org and [many others](https://mailvelope.com/en/faq#mailer_list).
+
+      - name: PGP Tools
+        url: https://github.com/Am-I-Being-Pwned/PGP-Tools
+        github: Am-I-Being-Pwned/PGP-Tools
+        icon: https://raw.githubusercontent.com/Am-I-Being-Pwned/PGP-Tools/refs/heads/main/apps/pgp/public/icon-128.png
+        followWith: Browser
+        description: |
+          Encrypt, decrypt, sign and verify OpenPGP messages, plus age encryption.
+          Uses Sequoia-PGP in WASM, keys are encrypted at rest with a password or passkey,
+          and it needs no sensitive permissions, so it can't read the sites you visit.
+          **Download**: [Chrome](https://chromewebstore.google.com/detail/pgp-tools-encrypt-decrypt/pgpcdgggohpbombhkffjoiiafdlfcpgp) - [Edge](https://microsoftedge.microsoft.com/addons/detail/pgp-tools-encrypt-decr/ngdbamkfldpokifphlmbflhoaepkcehf)
+
+      wordOfWarning: >
+        Browser extensions are inherently more risky, given how exposed they are and that updates happen automatically.
+        For long-term storage and important keys, prefer a hardware token or offline desktop app.
 
 
     ##############################
@@ -5072,7 +5146,8 @@ categories:
       notableMentions: |
         Spreadsheets remain a popular choice for managing budgets and financial planning.
         [Collabora](https://nextcloud.com/collaboraonline) or
-        [OnlyOffice](https://nextcloud.com/onlyoffice) (on [NextCloud](https://nextcloud.com)),
+        [Euro-Office](https://nextcloud.com/office) on [NextCloud](https://nextcloud.com),
+        [Euro-Office Desktop Editors](https://github.com/Euro-Office/DesktopEditors),
         [Libre Office](https://www.libreoffice.org) and [EtherCalc](https://ethercalc.net)
         are popular open source spread sheet applications. [Mintable](https://github.com/kevinschaich/mintable)
         allows you to auto-populate your spreadsheets from your financial data,
